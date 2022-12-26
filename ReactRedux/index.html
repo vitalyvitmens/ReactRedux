@@ -1,0 +1,31 @@
+<!-- TODO: ПОДКЛЮЧАЕМ СТИЛИ CSS ИЗ ФАЙЛА ReactRedux.css -->
+<!-- TODO: ПОДКЛЮЧАЕМ SCRIPT JS ИЗ ФАЙЛА ReactRedux.js -->
+
+<!-- TODO: Adding React (Добавление React) -->
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Test</title>
+    <script
+      src="https://unpkg.com/react@16/umd/react.development.js"
+      crossorigin
+    ></script>
+    <script
+      src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"
+      crossorigin
+    ></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    <link rel="stylesheet" href="ReactRedux.css" />
+  </head>
+  <body>
+    <div id="container"></div>
+
+    <script type="text/babel">
+      ReactDOM.render(
+        <h1>Hello, React!</h1>,
+        document.getElementById('container')
+      )
+    </script>
+    <script src="ReactRedux.js"></script>
+  </body>
+</html>

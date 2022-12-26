@@ -214,3 +214,47 @@
 // В предыдущей части мы узнали, что React обновляет только те элементы, которые необходимы.
 // Это позволяет приложениям React работать намного быстрее, чем приложения, созданные с использованием других интерфейсных технологий. Но как React достигает этого? React использует виртуальный DOM, который является облегченным представлением DOM. Когда элемент изменяется, он сначала обновляется в Virtual DOM. Этот процесс быстрый, так как виртуальный DOM представлен простыми объектами. После этого React сравнивает виртуальный DOM с его предыдущим состоянием и применяет только те обновления DOM, которые необходимы для приведения DOM в желаемое состояние.
 // DOM означает объектную модель документа и представляет собой древовидное представление HTML-страницы. Ознакомьтесь с нашим руководством по JavaScript, чтобы узнать больше о DOM.
+// let counter = 0
+
+// function show() {
+//   counter++
+//   const el = <p>{counter}</p>
+//   const root = ReactDOM.createRoot(document.getElementById('root'))
+//   root.render(el)
+// }
+
+// setInterval(show, 1000)
+
+// let counter2 = 0
+
+// function show2() {
+//   counter2++
+//   const el2 = <p>{counter2}</p>
+//   const root = ReactDOM.createRoot(document.getElementById('root2'))
+//   root.render(el2)
+// }
+
+// setInterval(show2, 100)
+
+// let counter3 = 0
+
+// function show3() {
+//   counter3++
+//   const el3 = <p>{counter3}</p>
+//   const root = ReactDOM.createRoot(document.getElementById('root3'))
+//   root.render(el3)
+// }
+
+// setInterval(show3, 10)
+
+// let counter4 = 0
+
+// function show4() {
+//   counter4++
+//   const el4 = <p>{counter4}</p>
+//   const root = ReactDOM.createRoot(document.getElementById('root4'))
+//   root.render(el4)
+// }
+
+// setInterval(show4, 1)
+

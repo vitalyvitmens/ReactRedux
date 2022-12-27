@@ -95,7 +95,7 @@
 //   <h1>Hello, React!</h1>,
 //   document.getElementById('root')
 // );
-//TODO: Новая версия:
+//TODO: Новая версия для index.js:
 // const root = ReactDOM.createRoot(document.getElementById('root'))
 // root.render(<h1>Hello, React!</h1>)
 // Это выведет сообщение в виде заголовка:
@@ -152,7 +152,7 @@
 // const el = <p>Hello, {name}!</p>;
 
 // ReactDOM.render(el, document.getElementById('root'));
-//TODO: Новая версия:
+//TODO: Новая версия для index.js:
 // const name = 'David'
 // const el = <p>Hello, {name}!</p>
 //
@@ -193,7 +193,7 @@
 // }
 
 // setInterval(show, 1000);
-//TODO: Новая версия:
+//TODO: Новая версия для index.js:
 // let counter = 0
 
 // function show() {
@@ -258,3 +258,245 @@
 
 // setInterval(show4, 1)
 
+//TODO: Components (Компоненты)
+// Компоненты позволяют разделить страницу на независимые и многократно используемые части. Давайте визуализируем это, взглянув на часть страницы Discussions (обсуждений) SoloLearn: Обратите внимание, что страницу можно разделить на несколько частей. Каждая из этих «частей» является компонентом. Заголовок — это компонент, кнопка «новый вопрос» — это компонент, а строка поиска — это отдельный компонент. Это упрощает организацию страниц на дрожжах, но, что еще более важно, компоненты позволяют нам, как разработчикам, отделять задачи друг от друга.
+// См. Рис: Components.png
+// Разделение задач — это принцип программирования, который гласит, что каждая задача должна быть разделена на отдельные части.
+// Например, на приведенной выше диаграмме кнопка «Новый вопрос» (2) должна быть нажата, если пользователь хочет добавить новый вопрос, тогда как панель поиска (3) будет использоваться, если пользователь хочет найти существующие вопросы.
+
+//TODO: Functional Components (Функциональные компоненты)
+// В React есть два типа компонентов, которые вы можете использовать: функциональные компоненты и компоненты класса.
+// В этой части мы поговорим о функциональных компонентах. Функциональный компонент — это простая функция JavaScript:
+// JSX:
+// function Hello() {
+//   return <h1>Hello world.</h1>;
+// }
+// В приведенном выше коде определен функциональный компонент Hello, который возвращает простой элемент React.
+// Обратите внимание, что имя функционального компонента начинается с заглавной буквы. Это абсолютно критично. Если мы начнем имя компонента со строчной буквы, браузер будет рассматривать наш компонент как обычный HTML-элемент, а не как компонент.
+
+//TODO: Rendering Components (Отрисовка компонентов)
+// Чтобы отобразить компонент, нам нужно создать соответствующий элемент JSX. Например, для нашего пользовательского компонента Hello:
+// JSX:
+// const el = <Hello />;
+// Теперь мы можем использовать наш пользовательский элемент и отображать его на странице:
+// JSX:
+// function Hello() {
+//   return <h1>Hello world.</h1>;
+// }
+
+// const el = <Hello />;
+// ReactDOM.render(
+//   el,
+//   document.getElementById('root')
+// );
+//TODO: Новая версия для index.js:
+// function Hello() {
+//   return <h1>Hello world.</h1>
+// }
+
+// const el = <Hello />
+
+// const root = ReactDOM.createRoot(document.getElementById('root'))
+// root.render(el)
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-functional-components-example?file=index.js
+// Помните, все имена компонентов должны начинаться с заглавной буквы.
+
+//TODO: Class Components (Компоненты класса)
+// Компоненты класса обычно используются, когда есть более сложные взаимодействия с пользователем, такие как формы и анимация. Все компоненты класса должны расширять класс React.Component. Мы можем переписать наш функциональный компонент Hello как компонент класса:
+// JSX:
+// class Hello extends React.Component {
+//   render() {
+//     return <h1>Hello world.</h1>
+//   }
+// }
+//TODO: Новая версия для index.js:
+// class Hello extends React.Component {
+//   render() {
+//     return <h1>!!! Hello world !!!</h1>
+//   }
+// }
+
+// const el = <Hello />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Попробуйте это на StackBlitz
+// https://stackblitz.com/edit/react-class-component-example?file=index.js%3AL5
+// Компоненты класса должны иметь метод рендеринга, который отвечает за то, что страница должна отображаться.
+// Об особенностях и различиях функциональных и классовых компонентов мы узнаем на следующих уроках.
+
+//TODO: Props (Реквизит)
+// Функциональные компоненты могут принимать аргументы, как и функции JavaScript. Эти аргументы называются props и представляют объект. Например, мы можем использовать props в нашем компоненте Hello:
+// JSX:
+// function Hello(props) {
+//   return <p>Hello, {props.name}!</p>
+// }
+// Теперь мы можем добавить атрибут name к нашему элементу:
+// JSX:
+// const el = <Hello name="David" />
+//TODO: Новая версия для index.js:
+// function Hello(props) {
+//   return <p>Hello, {props.name}!</p>
+// }
+
+// const el = <Hello name="David" />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Значение атрибута будет передано компоненту при рендеринге. Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-functional-component-props-example?file=index.js
+// Элемент может иметь несколько настраиваемых атрибутов, которые будут переданы компоненту с помощью объекта props. Вы можете использовать любые пользовательские имена для ваших атрибутов.
+
+//TODO: Components using Components (Компоненты с использованием компонентов)
+// Компоненты могут использовать другие компоненты для создания выходных данных. Например:
+// JSX:
+// function App() {
+//   return (
+//     <div>
+//       <Hello name="David" />
+//       <Hello name="James" />
+//       <Hello name="Amy" />
+//     </div>
+//   )
+// }
+
+// function Hello(props) {
+//   return <p>Hello, {props.name}!</p>
+// }
+
+// function App() {
+//   return (
+//     <div>
+//       <Hello name="David" />
+//       <Hello name="James" />
+//       <Hello name="Amy" />
+//     </div>
+//   )
+// }
+
+// const el = <App />
+// ReactDOM.render(el, document.getElementById('root'))
+//TODO: Новая версия для index.js:
+// function Hello(props) {
+//   return <p>Hello, {props.name}!</p>
+// }
+
+// function App() {
+//   return (
+//     <div>
+//       <Hello name="David" />
+//       <Hello name="James" />
+//       <Hello name="Amy" />
+//     </div>
+//   )
+// }
+
+// const el = <App />
+// // ReactDOM.createRoot(document.getElementById('root')).render(el)
+// root.render(el)
+// root2.render(el)
+// root3.render(el)
+// Здесь наш компонент App использует компонент Hello три раза, каждый раз с новым атрибутом имени. Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-functional-component-props-example-2?file=index.js
+// Как правило, рекомендуется разбивать сложные компоненты на несколько более мелких компонентов, которые можно использовать повторно.
+// Например, компонент Post может использовать компонент Avatar, компонент Image, компонент Date и т.д.
+
+//TODO: Props in Class Components (Реквизиты в компонентах класса)
+// Доступ к свойствам можно получить в компонентах класса с помощью this.props. Например:
+// JSX:
+// class Hello extends React.Component {
+//   render() {
+//     return <p>Hello, {this.props.name}!</p>
+//   }
+// }
+
+// class Hello extends React.Component {
+//   render() {
+//     return <p>Hello, {this.props.name}!</p>
+//   }
+// }
+
+// const el = <Hello name="David" />
+// ReactDOM.render(el, document.getElementById('root'))
+//TODO: Новая версия для index.js:
+// class Hello extends React.Component {
+//   render() {
+//     return <p>Hello, {this.props.name}!</p>
+//   }
+// }
+
+// const el = <Hello name="David" />
+// // ReactDOM.createRoot(document.getElementById('root')).render(el)
+// root.render(el)
+// root2.render(el)
+// root3.render(el)
+// Попробуйте на StackBlitz Важно учитывать, что реквизиты доступны только для чтения, то есть компоненты не могут изменять свои реквизиты.
+// https://stackblitz.com/edit/react-class-component-props-example?file=index.js
+// Интерактивные приложения обычно требуют изменения данных и элементов страницы. На следующем уроке мы узнаем, как изменить вывод компонентов с помощью состояния.
+
+//TODO: An Example (Пример)
+// Теперь, когда мы знаем, как создавать компоненты и передавать им данные, давайте создадим список покупок. Каждый предмет в нашем списке будет иметь имя и цену. Например:
+// JSX:
+{
+  /* <Item name="Cheese" price="4.99" />  */
+}
+// Компонент Item отобразит простой элемент div с данными:
+// JSX:
+// function Item(props) {
+//   return <div className="item">
+//   <b>Name:</b> {props.name} <br />
+//   <b>Price:</b> {props.price}
+//   </div>;
+// }
+// Теперь мы можем использовать наш компонент и создать несколько элементов для нашего списка покупок:
+// JSX:
+{
+  /* <Item name="Cheese" price="4.99" />
+<Item name="Bread" price="1.5" />
+<Item name="Ice cream" price="24" /> */
+}
+
+// function Item(props) {
+//   return (
+//     <div className="item">
+//       <b>Name:</b> {props.name} <br />
+//       <b>Price:</b> ${props.price}
+//     </div>
+//   )
+// }
+
+// function App() {
+//   return (
+//     <div>
+//       <Item name="Cheese" price="4.99" />
+//       <Item name="Bread" price="1.5" />
+//       <Item name="Ice cream" price="24" />
+//     </div>
+//   )
+// }
+//TODO: Новая версия для index.js:
+// function Item(props) {
+//   return (
+//     <div className="item">
+//       <b>Name:</b> {props.name} <br />
+//       <b>Price:</b> ${props.price}
+//     </div>
+//   )
+// }
+
+// function App() {
+//   return (
+//     <div>
+//       <Item name="Cheese" price="4.99" />
+//       <Item name="Bread" price="1.5" />
+//       <Item name="Ice cream" price="24" />
+//     </div>
+//   )
+// }
+
+// const el = <App />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// const el = <App />
+// ReactDOM.render(el, document.getElementById('root'))
+
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-shopping-list-example?file=index.js
+// Мы добавили несколько простых стилей CSS для визуального разделения элементов.
+// Нажмите «Попробовать на StackBlitz» , чтобы увидеть результат и поэкспериментировать с кодом.

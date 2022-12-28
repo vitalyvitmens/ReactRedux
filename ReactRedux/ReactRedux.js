@@ -500,3 +500,361 @@
 // https://stackblitz.com/edit/react-shopping-list-example?file=index.js
 // Мы добавили несколько простых стилей CSS для визуального разделения элементов.
 // Нажмите «Попробовать на StackBlitz» , чтобы увидеть результат и поэкспериментировать с кодом.
+
+//TODO: State (Состояние)
+// До этого момента мы научились передавать данные компонентам с помощью props (реквизитов). Многие веб-приложения нуждаются в своих компонентах для изменения своих данных, например, после взаимодействия с пользователем (нажатие кнопки, отправка формы и т.д.). Однако реквизит не может быть изменен. Чтобы позволить компонентам управлять своими данными и изменять их, React предоставляет функцию, называемую состоянием. Состояние — это объект, который добавляется как свойство в компоненты класса. Например:
+// JSX:
+// class Hello extends React.Component {
+//   state = {
+//     name: "James"
+//   }
+
+//   render() {
+//     return <h1>Hello {this.state.name}.</h1>;
+//   }
+// }
+//TODO: Новая версия для index.js:
+// class Hello extends React.Component {
+//   state = {
+//     name: 'James',
+//   }
+//   render() {
+//     return <h1>Hello {this.state.name}.</h1>
+//   }
+// }
+
+// const el = <Hello />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-state-initial-example?file
+// Как видите, состояние — это простой объект, содержащий пары ключ:значение. Как и в случае с props, доступ к значениям можно получить с помощью this.state. Теперь, когда компонент отрисовывается, состояние инициализируется с заданным значением, и появляется заголовок «Привет, Джеймс». Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-state-initial-example?file=index.js%3AL5
+// Объект состояния может содержать несколько пар ключ:значение, разделенных запятыми.
+
+//TODO: Changing State (Изменение состояния)
+// Состояние не должно изменяться напрямую. Вместо этого React предоставляет метод setState(), который можно использовать для изменения состояния. Например:
+// JSX:
+// this.setState({
+//   name: 'James',
+//   age: 25,
+// })
+// Вам нужно передать объект с новыми парами ключ:значение в метод setState. Почему мы должны использовать setState вместо того, чтобы просто напрямую изменять значения свойств объекта? Ответ раскрывает одну из самых полезных функций React: когда вызывается setState, React автоматически повторно отображает затронутый компонент с новым состоянием! Обычно изменение состояния происходит в обработчиках событий. Мы рассмотрим пример в следующей части!
+// Когда состояние изменяется с помощью метода setState, React получает уведомление и немедленно повторно отображает компонент с обновленным состоянием.
+
+//TODO: Counter App (Приложение счетчика)
+// Чтобы лучше понять, как работает состояние, давайте создадим приложение-счетчик, которое увеличивает счетчик при каждом нажатии кнопки.
+// Начнем с создания нашего компонента Counter, который включает в себя счетчик и кнопку:
+// JSX:
+// class Counter extends React.Component {
+//   state = {
+//     counter: 0,
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <p>{this.state.counter}</p>
+//         <button>Increment</button>
+//       </div>
+//     )
+//   }
+// }
+// Мы инициализировали наш счетчик значением 0 в состоянии. Теперь нам нужно добавить обработчик события клика на кнопку и увеличить счетчик в состоянии. Вот окончательный код:
+// JSX:
+// class Counter extends React.Component {
+//   state = {
+//     counter: 0,
+//   }
+//   increment = () => {
+//     this.setState({
+//       counter: this.state.counter + 1,
+//     })
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <p>{this.state.counter}</p>
+//         <button onClick={this.increment}>Increment</button>
+//       </div>
+//     )
+//   }
+// }
+//TODO: Новая версия для index.js:
+// class Counter extends React.Component {
+//   state = {
+//     counter: 0,
+//   }
+//   increment = () => {
+//     this.setState({ counter: this.state.counter + 1 })
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <p>{this.state.counter}</p>
+//         <button onClick={this.increment}>Increment</button>
+//       </div>
+//     )
+//   }
+// }
+
+// const el = <Counter />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Попробуйте на StackBlitz Событие onClick вызывает функцию увеличения нашего компонента, которая использует setState для изменения значения нашего счетчика. Когда состояние изменяется, React автоматически запускает повторный рендеринг компонента. Нажмите «Попробовать на StackBlitz», чтобы увидеть счетчик в действии!
+// Обратите внимание, что обработчик событий использует синтаксис camelCase и что функция обработчика передается в фигурных скобках.
+// Мы рассмотрим обработчики событий более подробно в следующих уроках.
+
+//TODO: Props vs State (Реквизит против состояния)
+// В качестве резюме, вот краткое изложение основных различий между Props (реквизитами) и State (состоянием):
+// - Мы используем реквизиты для передачи данных компонентам.
+// - Компоненты используют состояние для управления своими данными.
+// - Реквизиты доступны только для чтения и не могут быть изменены.
+// - Состояние может быть изменено его компонентом с помощью метода setState().
+// - Метод setState() приводит к повторному рендерингу затронутого компонента.
+// Компоненты, которые имеют состояние, называются с состоянием, а компоненты, которые не используют состояние, называются без состояния.
+
+//TODO: Hooks (Крючки)
+// Более ранняя версия React позволяла использовать состояние только с компонентами класса.
+// В последних версиях React была представлена ​​новая функция, называемая хуками, позволяющая использовать состояние внутри функциональных компонентов. Во-первых, нам нужно импортировать хук useState :
+// JSX:
+// import React, { useState } from 'react';
+//TODO: Новая версия для index.js:
+// useState возвращает пару, текущее значение состояния и функцию, которая позволяет изменить состояние.
+// useState принимает один аргумент, который является начальным значением состояния. Давайте посмотрим на пример:
+// JSX:
+// function Hello() {
+//   const [name, setName] = useState("David");
+
+//   return <h1>Hello {name}.</h1>;
+// }
+
+// function Hello() {
+//   const [name, setName] = useState('David')
+
+//   return <h1>Hello {name}.</h1>
+// }
+
+// const el = <Hello />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-hooks-initial-example?file=index.js
+// В приведенном выше примере мы создаемпеременную состояния name и функцию setName. Синтаксис квадратных скобок называется деструктурированием массива. Он присваивает переменной name значение текущего состояния, а setName — функции, позволяющей изменить состояние. Вы можете назвать эти переменные как угодно. Затем мы передаем «Дэвид» в качестве начального значения для нашей переменной имени в useState().
+// Вы можете создать несколько переменных состояния с соответствующими им методами набора. Просто используйте отдельные операторы для каждой переменной, используя хук useState.
+
+//TODO: Counter App using Hooks (Приложение счетчика с использованием хуков)
+// Теперь мы можем переписать наше приложение Counter из предыдущего урока, используя функциональный компонент и хуки!
+// Вот код:
+// JSX:
+// function Counter() {
+//   const [counter, setCounter] = useState(0)
+
+//   function increment() {
+//     setCounter(counter + 1)
+//   }
+//   return (
+//     <div>
+//       <p>{counter}</p>
+//       <button onClick={increment}>Increment</button>
+//     </div>
+//   )
+// }
+
+// const el = <Counter />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-hooks-counter-example?file=index.js
+// Как видите, по сравнению с классовым компонентом код намного короче, его легче читать и понимать. Это была одна из причин, по которой команда React создала хуки.
+// Помните, хуки можно использовать только внутри функциональных компонентов.
+// Хуки — это функции, которые позволяют «подключаться» к функциям React из функциональных компонентов.
+
+//TODO: Lifecycle Methods (Методы жизненного цикла)
+// React предоставляет специальные методы жизненного цикла для компонентов класса, которые вызываются при монтировании, обновлении или размонтировании компонентов.
+// Mounting (Монтирование) — это процесс, когда компонент отображается на странице.
+// Unmounting (Размонтирование) — это процесс удаления компонента со страницы. Метод componentDidMount вызывается при отображении компонента на странице. Например, мы можем использовать componentDidMount в нашем приложении Counter, чтобы установить начальное значение счетчика:
+// JSX:
+// componentDidMount() {
+//   this.setState({counter: 42});
+// }
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-state-counter-mount-example?file=index.js
+// Это установит начальное значение счетчика при рендеринге компонента. componentDidMount обычно используется для заполнения состояния внутри компонента, когда он изначально монтируется в DOM.
+// Точно так же метод жизненного цикла componentWillUnmount() вызывается непосредственно перед удалением компонента из DOM. Его можно использовать для освобождения ресурсов, занятых компонентом.
+
+//TODO: componentDidUpdate (компонентСделалОбновление)
+// Еще один метод жизненного цикла — componentDidUpdate(), который вызывается при обновлении компонента в DOM. Мы можем, например, предупредить текущее значение счетчика, когда оно увеличивается:
+// JSX:
+// componentDidUpdate() {
+//   alert("Number of clicks: " + this.state.counter);
+// }
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-state-counter-update-example?file=index.js
+// componentDidUpdate() вызывается только при обновлении компонента.
+// class Counter extends React.Component {
+//   state = {
+//     counter: 0,
+//   }
+//   increment = () => {
+//     this.setState({ counter: this.state.counter + 1 })
+//   }
+//   componentDidUpdate() {
+//     alert('Number of clicks: ' + this.state.counter)
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <p>{this.state.counter}</p>
+//         <button onClick={this.increment}>Increment</button>
+//       </div>
+//     )
+//   }
+// }
+
+// const el = <Counter />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+
+//TODO: The useEffect Hook (Хук с эффектом использования)
+// Рассмотренные нами методы жизненного цикла доступны только для компонентов класса.
+// Однако React предоставляет специальный хук под названием useEffect, чтобы сделать методы жизненного цикла доступными в функциональных компонентах. Он объединяет методы componentDidMount, componentDidUpdate и componentWillUnmount в один. Например, мы можем добиться поведения нашего последнего примера, используя функциональный компонент Counter:
+// JSX:
+function Counter() {
+  const [counter, setCounter] = useState(0)
+
+  useEffect(() => {
+    alert('Number of clicks: ' + counter)
+  })
+
+  function increment() {
+    setCounter(counter + 1)
+  }
+  return (
+    <div>
+      <p>{counter}</p>
+      <button onClick={increment}>Increment</button>
+    </div>
+  )
+}
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-hooks-useeffect-counter-example?file=index.js
+// Когда вы запустите код, вы заметите, что диалоговое окно предупреждения появляется также во время первого рендеринга. Это связано с тем, что по умолчанию useEffect запускается как после первого рендера, так и после каждого обновления. Чтобы вызывать метод только тогда, когда что-то меняется, мы можем предоставить ему второй аргумент:
+// JSX:
+useEffect(() => {
+  //do something
+}, [count])
+// Теперь метод useEffect() будет выполняться только при изменении счетчика. Чтобы имитировать componentWillUnmount, useEffect может возвращать функцию, которая выполняет очистку после него:
+// JSX:
+useEffect(() => {
+  // do something
+
+  return () => {
+    // cleanup
+  }
+})
+// Вы можете иметь несколько эффектов в одном компоненте.
+// Как и в случае с хуком useState, нам нужно импортировать useEffect, чтобы иметь возможность его использовать: import React, { useState, useEffect } from 'react';
+
+//TODO: Event Handling (Обработка событий)
+// Обработка событий в React очень похожа на обработку событий в DOM. Единственное отличие состоит в том, что в именах событий используется синтаксис camelCase, а обработчик событий необходимо передавать в фигурных скобках. Например, для обработки события нажатия на кнопку:
+// JSX:
+{
+  /* <button onClick={handleClick}>
+  My Button
+</button> */
+}
+// Щелчок по кнопке вызовет функцию handleClick компонента. Давайте изучим наше приложение Counter:
+// JSX:
+// function Counter() {
+//   const [counter, setCounter] = useState(0);
+
+//   function increment() {
+//     setCounter(counter+1);
+//   }
+//   return <div>
+//   <p>{counter}</p>
+//   <button onClick={increment}>Increment</button>
+//   </div>;
+// }
+// Попробуйте на StackBlitz.
+// https://stackblitz.com/edit/react-hooks-counter-example?file=index.js
+// Событие onClick вызывает функцию увеличения, которая увеличивает переменную состояния счетчика.
+// Посмотрите то же самое приложение Counter, созданное с использованием компонента класса, здесь:
+// class Counter extends React.Component {
+//   state = {
+//     counter: 0,
+//   }
+//   increment = () => {
+//     this.setState({ counter: this.state.counter + 1 })
+//   }
+//   render() {
+//     return (
+//       <div>
+//         <p>{this.state.counter}</p>
+//         <button onClick={this.increment}>Increment</button>
+//       </div>
+//     )
+//   }
+// }
+
+// const el = <Counter />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+
+//TODO: Handling User Input (Обработка пользовательского ввода)
+// Одним из распространенных способов взаимодействия пользователей с веб-страницами являются текстовые поля. Мы можем обрабатывать пользовательский ввод в React, используя событие onChange текстового поля. Когда значение текстового поля изменяется, вызывается обработчик события, обновляющий значение поля в состоянии компонента. Таким образом, у вас всегда будет фактическое значение текстового поля в состоянии. Давайте сделаем приложение для конвертации километров в мили. Мы возьмем значение км из текстового поля и рассчитаем значение миль после ввода:
+// JSX:
+// function Converter() {
+//   const [km, setKm] = useState(0)
+
+//   function handleChange(e) {
+//     setKm(e.target.value)
+//   }
+//   function convert(km) {
+//     return (km / 1.609).toFixed(2)
+//   }
+
+//   return (
+//     <div>
+//       <input type="text" value={km} onChange={handleChange} />
+//       <p>
+//         {' '}
+//         {km} km is {convert(km)} miles{' '}
+//       </p>
+//     </div>
+//   )
+// }
+
+// const el = <Converter />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Попробуйте на StackBlitz
+// https://stackblitz.com/edit/react-km-miles-converter?file=index.js
+// Наш компонент Converter включает текстовое поле, которое вызывает функцию handleChange при изменении его значения. Функция handleChange обновляет состояние текущим значением текстового поля, заставляя компонент повторно отображать и отображать соответствующее значение миль, которое вычисляется с помощью функции преобразования.
+// Доступ к значению текстового поля осуществляется через объект e, который представляет событие React. Он передается функции обработчика событий в качестве аргумента и может использоваться для доступа к объекту события.
+
+//TODO: Forms (Формы)
+// В предыдущей части мы узнали, как обрабатывать пользовательский ввод в текстовых полях. Текстовые поля обычно являются частью формы. Как и в предыдущем примере, элементы формы React сохраняют свое состояние и обновляют его в зависимости от ввода пользователя. Таким образом, у вас всегда есть данные вашей формы в вашем распоряжении в штате. Чтобы продемонстрировать это, мы создадим форму, которая будет добавлять числа каждый раз при отправке формы и отображать сумму. Наша форма содержит поле ввода и кнопку отправки:
+// JSX:
+// function AddForm() {
+//   const [sum, setSum] = useState(0)
+//   const [num, setNum] = useState(0)
+
+//   function handleChange(e) {
+//     setNum(e.target.value)
+//   }
+
+//   function handleSubmit(e) {
+//     setSum(sum + Number(num))
+//     e.preventDefault()
+//   }
+
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <input type="number" value={num} onChange={handleChange} />
+//       <input type="submit" value="Add" />
+//       <p> Sum is {sum} </p>
+//     </form>
+//   )
+// }
+
+// const el = <AddForm />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+// Попробуйте на StackBlitz.
+// https://stackblitz.com/edit/react-simple-calc-form-example?file=index.js
+// В приведенном выше коде значение ввода контролируется React (мы сохраняем значение в состоянии). Когда форма отправляется с помощью кнопки отправки, вызывается функция handleSubmit, которая обновляет значение суммы в состоянии. Элемент формы ввода, значение которого контролируется React таким образом, называется «controlled component» (управляемым компонентом).
+// Обратите внимание на e.preventDefault(); утверждение. Этот оператор предотвращает поведение формы по умолчанию, которая по умолчанию перезагружает страницу при отправке. В JavaScript мы бы использовали return false; для этого, но в React нам нужно вызвать preventDefault().
+

@@ -1,13 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import ReactDOM from 'react-dom/client'
 import './index.css'
+import { Provider } from 'react-redux'
+import { createStore } from 'redux'
+import PeopleList from './components/PeopleList'
+import AddPersonForm from './components/AddPersonForm'
+import Counter from './Counter'
 
+// import { connect } from 'react-redux'
 // import App from './App'
 // import reportWebVitals from './reportWebVitals'
 
-const root = ReactDOM.createRoot(document.getElementById('root'))
-const root2 = ReactDOM.createRoot(document.getElementById('root2'))
-const root3 = ReactDOM.createRoot(document.getElementById('root3'))
+// const root = ReactDOM.createRoot(document.getElementById('root'))
+// const root2 = ReactDOM.createRoot(document.getElementById('root2'))
+// const root3 = ReactDOM.createRoot(document.getElementById('root3'))
 
 // TODO: Changing the Output
 // const root = ReactDOM.createRoot(document.getElementById('root'))
@@ -505,55 +511,225 @@ const root3 = ReactDOM.createRoot(document.getElementById('root3'))
 // )
 
 //TODO: Summary (Резюме)
-function AddPersonForm(props) {
-  const [person, setPerson] = useState('')
+// function AddPersonForm(props) {
+//   const [person, setPerson] = useState('')
 
-  function handleChange(e) {
-    setPerson(e.target.value)
-  }
+//   function handleChange(e) {
+//     setPerson(e.target.value)
+//   }
 
-  function handleSubmit(e) {
-    if (person !== '') {
-      props.handleSubmit(person)
-      setPerson('')
-    }
-    e.preventDefault()
-  }
-  return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="text"
-        placeholder="Add new contact"
-        onChange={handleChange}
-        value={person}
-      />
-      <button type="submit">Add</button>
-    </form>
-  )
+//   function handleSubmit(e) {
+//     if (person !== '') {
+//       props.handleSubmit(person)
+//       setPerson('')
+//     }
+//     e.preventDefault()
+//   }
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <input
+//         type="text"
+//         placeholder="Add new contact"
+//         onChange={handleChange}
+//         value={person}
+//       />
+//       <button type="submit">Add</button>
+//     </form>
+//   )
+// }
+
+// function PeopleList(props) {
+//   const arr = props.data
+//   const listItems = arr.map((val, index) => <li key={index}>{val}</li>)
+//   return <ul>{listItems}</ul>
+// }
+
+// function ContactManager(props) {
+//   const [contacts, setContacts] = useState(props.data)
+
+//   function addPerson(name) {
+//     setContacts([...contacts, name])
+//   }
+
+//   return (
+//     <div>
+//       <AddPersonForm handleSubmit={addPerson} />
+//       <PeopleList data={contacts} />
+//     </div>
+//   )
+// }
+// const contacts = ['James Smith', 'Thomas Anderson', 'Bruce Wayne']
+
+// ReactDOM.createRoot(document.getElementById('root')).render(
+//   <ContactManager data={contacts} />
+// )
+
+//TODO: Counter App (Приложение счетчика)
+// function Counter() {
+//   const [counter, setCounter] = useState(0)
+
+//   function increment() {
+//     setCounter(counter + 1)
+//   }
+//   return (
+//     <div>
+//       <p>{counter}</p>
+//       <button onClick={increment}>Increment</button>
+//     </div>
+//   )
+// }
+
+// const el = <Counter />
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+
+//TODO: Accessing The Store (Доступ к магазину)
+// // Action creator
+// function incrementCounter(num) {
+//   return { type: 'INCREMENT', num: num }
+// }
+
+// const initialState = {
+//   count: 0,
+// }
+// // Reducer function
+// function reducer(state = initialState, action) {
+//   switch (action.type) {
+//     case 'INCREMENT':
+//       return { count: state.count + action.num }
+//     default:
+//       return state
+//   }
+// }
+
+// function Counter(props) {
+//   function handleClick() {
+//     props.incrementCounter(1)
+//   }
+//   return (
+//     <div>
+//       <p>{props.count}</p>
+//       <button onClick={handleClick}>Increment</button>
+//     </div>
+//   )
+// }
+
+// function mapStateToProps(state) {
+//   return {
+//     count: state.count,
+//   }
+// }
+// const mapDispatchToProps = {
+//   incrementCounter,
+// }
+
+// const store = createStore(reducer)
+
+// const MyCounter = connect(mapStateToProps, mapDispatchToProps)(Counter)
+// const el = (
+//   <Provider store={store}>
+//     {' '}
+//     <MyCounter />{' '}
+//   </Provider>
+// )
+
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+
+//TODO: Project Structure (Структура проекта)
+// const initialState = {
+//   count: 0,
+// }
+// // Reducer function
+// function reducer(state = initialState, action) {
+//   switch (action.type) {
+//     case 'INCREMENT':
+//       return { count: state.count + action.num }
+//     default:
+//       return state
+//   }
+// }
+
+// const store = createStore(reducer)
+// const el = (
+//   <Provider store={store}>
+//     <Counter />
+//   </Provider>
+// )
+
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+
+//TODO: Contact Manager (Менеджер контактов)
+// function AddPersonForm(props) {
+//   const [person, setPerson] = useState('')
+
+//   function handleChange(e) {
+//     setPerson(e.target.value)
+//   }
+
+//   function handleSubmit(e) {
+//     if (person !== '') {
+//       props.handleSubmit(person)
+//       setPerson('')
+//     }
+//     e.preventDefault()
+//   }
+//   return (
+//     <form onSubmit={handleSubmit}>
+//       <input
+//         type="text"
+//         placeholder="Add new contact"
+//         onChange={handleChange}
+//         value={person}
+//       />
+//       <button type="submit">Add</button>
+//     </form>
+//   )
+// }
+
+// function PeopleList(props) {
+//   const arr = props.data
+//   const listItems = arr.map((val, index) => <li key={index}>{val}</li>)
+//   return <ul>{listItems}</ul>
+// }
+
+// function ContactManager(props) {
+//   const [contacts, setContacts] = useState(props.data)
+
+//   function addPerson(name) {
+//     setContacts([...contacts, name])
+//   }
+
+//   return (
+//     <div>
+//       <AddPersonForm handleSubmit={addPerson} />
+//       <PeopleList data={contacts} />
+//     </div>
+//   )
+// }
+// const contacts = ['James Smith', 'Thomas Anderson', 'Bruce Wayne']
+
+// const el = <ContactManager data={contacts} />
+
+// ReactDOM.createRoot(document.getElementById('root')).render(el)
+
+//TODO: Contact Manager (Менеджер контактов)
+const initialState = {
+  contacts: ['James Smith', 'Thomas Anderson', 'Bruce Wayne'],
 }
 
-function PeopleList(props) {
-  const arr = props.data
-  const listItems = arr.map((val, index) => <li key={index}>{val}</li>)
-  return <ul>{listItems}</ul>
-}
-
-function ContactManager(props) {
-  const [contacts, setContacts] = useState(props.data)
-
-  function addPerson(name) {
-    setContacts([...contacts, name])
+// Reducer function
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case 'ADD_PERSON':
+      return { ...state, contacts: [...state.contacts, action.data] }
+    default:
+      return state
   }
-
-  return (
-    <div>
-      <AddPersonForm handleSubmit={addPerson} />
-      <PeopleList data={contacts} />
-    </div>
-  )
 }
-const contacts = ['James Smith', 'Thomas Anderson', 'Bruce Wayne']
 
+const store = createStore(reducer)
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <ContactManager data={contacts} />
+  <Provider store={store}>
+    <AddPersonForm />
+    <PeopleList />
+  </Provider>
 )

@@ -48,6 +48,31 @@ p {
 } */
 
 /* TODO: Summary (Резюме) */
+/* h1,
+p {
+  font-family: Lato;
+}
+ul {
+  padding: 0;
+  margin: 10px 0 0 0;
+}
+li {
+  list-style-type: none;
+  padding: 10px;
+  margin: 10px;
+  background-color: rgba(61, 120, 175, 0.411);
+  border-radius: 10px;
+}
+form {
+  margin: 10px;
+} */
+
+/* TODO: Counter App (Приложение счетчика) */
+/* h1, p {
+  font-family: Lato;
+} */
+
+/* TODO: Contact Manager (Менеджер контактов) */
 h1,
 p {
   font-family: Lato;

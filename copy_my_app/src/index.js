@@ -582,7 +582,7 @@ import Counter from './Counter'
 // const el = <Counter />
 // ReactDOM.createRoot(document.getElementById('root')).render(el)
 
-//TODO: Accessing The Store (Доступ к магазину)
+//TODO: Accessing The Store (Доступ к хранилищу)
 // // Action creator
 // function incrementCounter(num) {
 //   return { type: 'INCREMENT', num: num }
